@@ -2,6 +2,14 @@
 
 Repo aiming to explore the various [start order options](https://www.freedesktop.org/software/systemd/man/systemd.unit.html#Requires=) in SystemD and how they operate with [SystemD replacement](https://github.com/gdraheim/docker-systemctl-replacement).
 
+## Table of contents
+- [Exploring SystemD Replacement Start Order](#exploring-systemd-replacement-start-order)
+  - [Table of contents](#table-of-contents)
+  - [Prerequisite](#prerequisite)
+  - [Running tests](#running-tests)
+  - [Results](#results)
+    - [Summary table](#summary-table)
+  - [Reading](#reading)
 ## Prerequisite 
 
 - Docker
