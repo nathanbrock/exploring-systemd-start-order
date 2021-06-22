@@ -1,0 +1,14 @@
+[Unit]
+Description=Service B
+Requires=a.service
+
+[Service]
+ExecStartPre=/bin/sh -c 'echo "ExecStartPre service B"'
+ExecStart=/bin/sh -c 'echo "ExecStart service B"; sleep infinity'
+ExecStartPost=/bin/sh -c 'echo "ExecStartPost service B"'
+ExecReload=/bin/sh -c 'echo "ExecReload service B"'
+ExecStop=/bin/sh -c 'echo "ExecStop service B"'
+ExecStopPost=/bin/sh -c 'echo "ExecStopPost service B"'
+
+[Install]
+WantedBy=multi-user.target

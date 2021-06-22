@@ -1,0 +1,16 @@
+[Unit]
+Description=Service A
+Before=b.service
+
+[Service]
+Type=oneshot
+ExecStartPre=/bin/sh -c 'echo "ExecStartPre service A"'
+ExecStart=/bin/sh -c 'echo "ExecStart service A"; echo "Service A exit code=$SERVICE_A_EXIT_CODE"; exit $SERVICE_A_EXIT_CODE'
+ExecStartPost=/bin/sh -c 'echo "ExecStartPost service A"'
+ExecReload=/bin/sh -c 'echo "ExecReload service A"'
+ExecStop=/bin/sh -c 'echo "ExecStop service A"'
+ExecStopPost=/bin/sh -c 'echo "ExecStopPost service A"'
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
