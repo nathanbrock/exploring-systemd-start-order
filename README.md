@@ -28,3 +28,8 @@ This command will;
 ## Results
 
 The results of each scenario can be found in the `./scenarios/**/results` directory. 
+
+## Reading
+
+- [SystemCTL replacement start order notes](https://github.com/gdraheim/docker-systemctl-replacement/blob/master/notes/STARTORDER.md)
+- [SystemD section options](https://www.freedesktop.org/software/systemd/man/systemd.unit.html#%5BUnit%5D%20Section%20Options)
