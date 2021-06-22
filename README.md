@@ -27,7 +27,33 @@ This command will;
 
 ## Results
 
-The results of each scenario can be found in the `./scenarios/**/results` directory. 
+The screenshot results of each scenario can be found in the `./scenarios/**/results` directory. 
+
+### Summary table 
+
+| Scenario # 	| Description                       	| SystemD     	| Service A exit code 	| Expected B status      	| Actual B status        	|
+|------------	|-----------------------------------	|-------------	|---------------------	|------------------------	|------------------------	|
+| 1          	| Loose dependency. A sets Before=b 	| Pure        	| 0                   	| Running after start-up 	| Running after start-up 	|
+|            	|                                   	| Replacement 	| 0                   	| Running after start-up 	| Running after start-up 	|
+|            	|                                   	| Pure        	| 1                   	| Running after start-up 	| Running after start-up 	|
+|            	|                                   	| Replacement 	| 1                   	| Running after start-up 	| Running after start-up 	|
+| 2          	| A sets Before=b. B sets BindsTo=a 	| Pure        	| 0                   	| Running after start-up 	| Running after start-up 	|
+|            	|                                   	| Replacement 	| 0                   	| Running after start-up 	| Running after start-up 	|
+|            	|                                   	| Pure        	| 1                   	| Not running            	| Not running            	|
+|            	|                                   	| Replacement 	| 1                   	| Not running            	| Running after start-up 	|
+| 3           | Same as above but with a wait       |               |                       |                         |                         |
+| 4           | A sets Before=b. B sets Requires=a  | Pure          | 0                     | Running after start-up 	| Running after start-up 	|
+|            	|                                   	| Replacement 	| 0                   	| Running after start-up 	| Running after start-up 	|
+|            	|                                   	| Pure        	| 1                   	| Not running            	| Not running            	|
+|            	|                                   	| Replacement 	| 1                   	| Not running            	| Running after start-up 	|
+| 5           | B sets After&Requires=a             | Pure          | 0                     | Running after start-up 	| Running after start-up 	|
+|            	|                                   	| Replacement 	| 0                   	| Running after start-up 	| Running after start-up 	|
+|            	|                                   	| Pure        	| 1                   	| Not running            	| Not running            	|
+|            	|                                   	| Replacement 	| 1                   	| Not running            	| Running after start-up 	|
+| 6           | B sets After&Requires&PartOf=a      | Pure          | 0                     | Running after start-up 	| Running after start-up 	|
+|            	|                                   	| Replacement 	| 0                   	| Running after start-up 	| Running after start-up 	|
+|            	|                                   	| Pure        	| 1                   	| Not running            	| Not running            	|
+|            	|                                   	| Replacement 	| 1                   	| Not running            	| Running after start-up 	|
 
 ## Reading
 
