@@ -1,27 +1,11 @@
 #!/usr/bin/env bash
 
-SCENARIO_PATH=$1
-SERVICE_A_EXIT_CODE=$2
-
-PURPLE='\033[0;35m'
-NC='\033[0m' # No Color
+source ./shared-consts.sh
+source ./shared-funcs.sh
 
 clean_up() {
-    mkdir -p $SCENARIO_PATH/results
-    screencapture $SCENARIO_PATH/results/exit-$SERVICE_A_EXIT_CODE-pure-systemctl-output.png
-    
-    clear
-
-    echo ">>> Noting status of service A..."
-    docker exec -it $CID /bin/sh -c 'systemctl status a'
-
-    echo ">>> Noting status of service B..."
-    docker exec -it $CID /bin/sh -c 'systemctl status b'
-
-    screencapture $SCENARIO_PATH/results/exit-$SERVICE_A_EXIT_CODE-pure-systemctl-status.png
-
-    echo -e "\n>>> Killing container $CID"
-    docker kill $CID
+    capture_results $LOG_RESULTS $SCENARIO_PATH $SERVICE_A_EXIT_CODE $CID
+    stop_running_container $CID
 }
 trap clean_up EXIT
 
