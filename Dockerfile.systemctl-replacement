@@ -3,8 +3,8 @@ FROM centos:7.7.1908
 ARG SCENARIO_PATH
 ARG SERVICE_A_EXIT_CODE
 
-COPY ./$SCENARIO_PATH/a.service /usr/lib/systemd/system/a.service
-COPY ./$SCENARIO_PATH/b.service /usr/lib/systemd/system/b.service
+COPY ./$SCENARIO_PATH/*.service /usr/lib/systemd/system/
+COPY ./$SCENARIO_PATH/*.timer /usr/lib/systemd/system/
 COPY ./files/systemctl.py /usr/bin/systemctl
 COPY ./files/write-exit-code.sh /tmp/write-exit-code.sh
 
@@ -13,5 +13,7 @@ RUN /tmp/write-exit-code.sh ${SERVICE_A_EXIT_CODE}
 
 RUN systemctl enable a
 RUN systemctl enable b
+# || true - ensures the build doesn't fail for though scenarios without a timer
+RUN systemctl enable a.timer || true 
 
 CMD /usr/bin/systemctl

@@ -1,0 +1,12 @@
+[Unit]
+Description=Execute backup every day at midnight
+
+[Timer]
+OnBootSec=0
+OnUnitActiveSec=5
+Persistent=true
+AccuracySec=1us
+Unit=a.service
+
+[Install]
+WantedBy=multi-user.target
