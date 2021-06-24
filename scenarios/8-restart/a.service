@@ -1,0 +1,17 @@
+[Unit]
+Description=Service A
+Before=b.service
+
+[Service]
+Type=simple
+RestartSec=5s
+Restart=always
+ExecStartPre=/bin/sh -c 'echo "ExecStartPre service A"'
+ExecStart=/bin/sh -c 'echo "ExecStart service A"; echo "Latest run: $(date)" > /tmp/a-service-last-run.txt; echo "Service A exit code=$SERVICE_A_EXIT_CODE"; exit $SERVICE_A_EXIT_CODE'
+ExecStartPost=/bin/sh -c 'echo "ExecStartPort service A"'
+ExecReload=/bin/sh -c 'echo "ExecReload service A"'
+ExecStop=/bin/sh -c 'echo "ExecStop service A"'
+ExecStopPost=/bin/sh -c 'echo "ExecStopPost service A"'
+
+[Install]
+WantedBy=multi-user.target

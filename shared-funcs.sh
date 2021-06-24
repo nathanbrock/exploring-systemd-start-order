@@ -25,6 +25,7 @@ capture_results() {
 
     echo ">>> Noting status of service A..."
     docker exec -it $CID /bin/sh -c 'systemctl status a'
+    docker exec -it $CID /bin/sh -c 'cat /tmp/a-service-last-run.txt || true'
 
     echo ">>> Noting status of service B..."
     docker exec -it $CID /bin/sh -c 'systemctl status b'
